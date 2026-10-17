@@ -3,8 +3,17 @@ from flask import Flask, render_template, request
 import pandas as pd
 import pickle
 
-app = Flask(__name__)
+#app = Flask(__name__)
+import os
+from flask import Flask, render_template
 
+app = Flask(
+    __name__,
+    template_folder=os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "templates"
+    )
+)
 @app.route("/")
 def home():
     return render_template("index.html")
