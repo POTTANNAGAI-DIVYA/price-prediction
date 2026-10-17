@@ -1,0 +1,133 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #234b78;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 22px;
+            background-color: #234b78;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #173555;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            text-align: center;
+            background-color: #e8f3ff;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #b00020;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student Result Prediction</h2>
+
+        <form action="/predict" method="POST">
+            <label for="study_hours">Study Hours</label>
+            <input
+                type="number"
+                id="study_hours"
+                name="study_hours"
+                min="0"
+                step="any"
+                required
+            >
+
+            <label for="attendance">Attendance (%)</label>
+            <input
+                type="number"
+                id="attendance"
+                name="attendance"
+                min="0"
+                max="100"
+                step="any"
+                required
+            >
+
+            <label for="previous_marks">Previous Marks</label>
+            <input
+                type="number"
+                id="previous_marks"
+                name="previous_marks"
+                min="0"
+                max="100"
+                step="any"
+                required
+            >
+
+            <button type="submit">Predict Result</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Predicted Result: {{ prediction }}
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+```
